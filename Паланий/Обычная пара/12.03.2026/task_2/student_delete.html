@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        input {
+            margin-bottom: 15px;
+            width: 350px;
+        }
+
+        button {
+            margin-bottom: 15px;
+            width: 150px;
+        }
+
+        select {
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Добавить студента:</h2>
+    <input type="text" placeholder="Введите имя.." id="name">
+    <input type="text" placeholder="Введите возраст.." id="age">
+    <input type="text" placeholder="Введите группу.." id="group">
+    <button id="send">Отправить</button>
+
+    <input id="search" placeholder="Поиск"></input>
+
+    <select id="filter">
+        <option value="all">Все группы</option>
+    </select>
+
+    <h2>Список студентов:</h2>
+    <ul id="list"></ul>
+
+    <script src="student_delete.js"></script>
+</body>
+</html>

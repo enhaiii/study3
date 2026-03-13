@@ -1,0 +1,88 @@
+SELECT 
+    'ID' AS COLUMN_NAME,
+    'pk_recipes' AS CONSTRAINT_NAME,
+    'P' AS CONSTRAINT_TYPE,
+    '' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'nationality_id' AS COLUMN_NAME,
+    'fk_recipes_nationality' AS CONSTRAINT_NAME,
+    'R' AS CONSTRAINT_TYPE,
+    'REFERENCES nationalities(id)' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'type_id' AS COLUMN_NAME,
+    'fk_recipes_type' AS CONSTRAINT_NAME,
+    'R' AS CONSTRAINT_TYPE,
+    'REFERENCES types(id)' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'title' AS COLUMN_NAME,
+    'nn_recipes_title' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"title" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'img' AS COLUMN_NAME,
+    'nn_recipes_img' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"img" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'description' AS COLUMN_NAME,
+    'nn_recipes_description' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"description" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'cooking_time' AS COLUMN_NAME,
+    'nn_recipes_cooking_time' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"cooking_time" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'complexity' AS COLUMN_NAME,
+    'nn_recipes_complexity' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"complexity" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'weight' AS COLUMN_NAME,
+    'nn_recipes_weight' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"weight" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'nationality_id' AS COLUMN_NAME,
+    'nn_recipes_nationality_id' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"nationality_id" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+UNION ALL
+
+SELECT 
+    'type_id' AS COLUMN_NAME,
+    'nn_recipes_type_id' AS CONSTRAINT_NAME,
+    'C' AS CONSTRAINT_TYPE,
+    '"type_id" IS NOT NULL' AS SEARCH_CONDITION,
+    'ENABLED' AS STATUS
+
+ORDER BY CONSTRAINT_TYPE, COLUMN_NAME;

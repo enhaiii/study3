@@ -1,58 +1,77 @@
-let users
+let users = JSON.parse(localStorage.getItem("users")) || [];
 
-if (JSON.parse(localStorage.getItem("users")) === null){
-    users = []
-} else {
-    users = JSON.parse(localStorage.getItem("users"))
+const adminExists = users.some(user => user.role === 'Admin');
+if (!adminExists) {
+    users.push({
+        name: "admin",
+        password: "admin",
+        role: "Admin",
+        email: "",
+        bio: "",
+        notes: []
+    });
+    localStorage.setItem("users", JSON.stringify(users));
 }
 
-const nameUser = document.getElementById('inuptLogin')
-const passwordUser = document.getElementById('inputPassword')
-const buttonRegistration = document.getElementById('registration')
-const signLogin = document.getElementById('signLogin')
-const signPassword = document.getElementById('signPassword')
-const buttonSignIn = document.getElementById('signIn')
-let inputAnswer = document.getElementById('answer')
+const nameUser = document.getElementById('inuptLogin');
+const passwordUser = document.getElementById('inputPassword');
+const buttonRegistration = document.getElementById('registration');
+const signLogin = document.getElementById('signLogin');
+const signPassword = document.getElementById('signPassword');
+const buttonSignIn = document.getElementById('signIn');
+const guestLogin = document.getElementById('guestLogin');
+const answer = document.getElementById('answer');
 
-buttonRegistration.addEventListener('click', function (){
-    let nameValue = nameUser.value 
-    let passwordValue = passwordUser.value 
+buttonRegistration.addEventListener('click', () => {
+    const name = nameUser.value.trim();
+    const pwd = passwordUser.value.trim();
 
-    let isValid = true
-    for (let i = 0; i < users.length; i++) {
-        if (users[i] === null || users[i].nameUser === nameValue) {
-            isValid = false
-        }
+    if (!name || !pwd) {
+        answer.textContent = "Логин и пароль не могут быть пустыми";
+        return;
     }
 
-    if (isValid) {
-        let user = {
-            "name": nameValue,
-            "password": passwordValue
-        }
-
-        users.push(user)
-        localStorage.setItem('users', JSON.stringify(users))
+    if (users.some(user => user.name === name)) {
+        answer.textContent = "Логин уже занят";
     } else {
-        inputAnswer.textContent = "Логин уже занят"
+        users.push({
+            name: name,
+            password: pwd,
+            role: "User",
+            email: "",
+            bio: "",
+            notes: []
+        });
+        localStorage.setItem("users", JSON.stringify(users));
+        answer.textContent = "Регистрация успешна! Теперь войдите.";
     }
-    
-    nameUser.value = ""
-    passwordUser.value = ""
 
-})
+    nameUser.value = "";
+    passwordUser.value = "";
+});
 
-buttonSignIn.addEventListener('click', function(){
-    let loginValue = signLogin.value 
-    let passwordValue = signPassword.value 
+buttonSignIn.addEventListener('click', () => {
+    const login = signLogin.value.trim();
+    const pwd = signPassword.value.trim();
+    const user = users.find(u => u.name === login && u.password === pwd);
 
-    for (let i = 0; i < users.length; i++){
-        if(users[i].name === loginValue && users[i].password === passwordValue) {
-            localStorage.setItem("currentUser", JSON.stringify(users[i]))
-
-            window.location.href = "./profile.html"
-        } else {
-            inputAnswer.textContent = "Неверный логин или пароль"
-        }
+    if (user) {
+        localStorage.setItem("currentUser", JSON.stringify(user));
+        window.location.href = "./profile.html";
+    } else {
+        answer.textContent = "Неверный логин или пароль";
     }
-})
+});
+
+guestLogin.addEventListener('click', () => {
+    const guest = {
+        name: "Гость_" + Date.now(),
+        password: "",
+        role: "Guest",
+        email: "",
+        bio: "",
+        notes: []
+    };
+    localStorage.setItem("currentUser", JSON.stringify(guest));
+    window.location.href = "./profile.html";
+});

@@ -1,25 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Личный кабинет</title>
 </head>
 <body>
+    <p>Имя пользователя: <span id="userName"></span></p>
+    <p>Роль: <span id="userRole"></span></p>
+    <button id="logout">Выйти из аккаунта</button>
+    <hr>
 
-    <p id="userName"></p>
+    <h3>Личная информация</h3>
     <p>Email:</p>
-    <input type="text" id="Email">
-    <div id="savedEmail"></div>
+    <input type="text" id="Email" placeholder="Введите email">
+    <button id="savedEmail">Сохранить email</button>
     <p>О себе:</p>
-    <input type="text" id="bio">
-    <div id="savedBio"></div>
-    <button id="logout">Выйти</button>
-    <h2>Добавить заметку</h2>
+    <input type="text" id="bio" placeholder="Расскажите о себе">
+    <button id="savedBio">Сохранить информацию</button>
+    <hr>
+
+    <h2>Заметки</h2>
     <input type="text" placeholder="Напишите заметку" id="note">
-    <button id="sendButton">Отправить</button>
-    <h2>Заметки:</h2>
+    <button id="sendButton">Добавить заметку</button>
+    <h2>Мои заметки:</h2>
     <ol id="list"></ol>
+    <hr>
+
+    <a href="messages.html">Перейти к сообщениям</a>
+
     <script src="profile.js"></script>
 </body>
 </html>

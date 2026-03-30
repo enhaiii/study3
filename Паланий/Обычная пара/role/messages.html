@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сообщения</title>
+    <style>
+        .message { border: 1px solid #ccc; margin: 10px; padding: 10px; }
+        .comment { margin-left: 20px; border-left: 2px solid #ddd; padding-left: 10px; margin-top: 5px; }
+        .delete-btn { color: red; cursor: pointer; margin-left: 10px; font-size: 0.9em; }
+        .add-comment { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Сообщения</h1>
+    <div id="messagesContainer"></div>
+
+    <hr>
+    <div id="addMessageSection">
+        <h3>Добавить сообщение</h3>
+        <textarea id="newMessageContent" rows="3" cols="50" placeholder="Введите текст сообщения..."></textarea><br>
+        <button id="addMessageBtn">Отправить сообщение</button>
+    </div>
+
+    <hr>
+    <a href="profile.html">Вернуться в профиль</a> | <button id="logoutFromMessages">Выйти</button>
+
+    <script src="messages.js"></script>
+</body>
+</html>

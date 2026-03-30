@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Вход и регистрация</title>
 </head>
 <body>
     <h2>Регистрация</h2>
     <input type="text" placeholder="Введите логин" id="inuptLogin">
-    <input type="text" placeholder="Введите пароль" id="inputPassword">
+    <input type="password" placeholder="Введите пароль" id="inputPassword">
     <button id="registration">Зарегистрироваться</button>
-    <h2>Войдите в аккаунт</h2>
+
+    <h2>Вход в аккаунт</h2>
     <input type="text" placeholder="Введите логин" id="signLogin">
-    <input type="text" placeholder="Введите пароль" id="signPassword">
+    <input type="password" placeholder="Введите пароль" id="signPassword">
     <button id="signIn">Войти</button>
+    <button id="guestLogin">Войти как гость</button>
+
     <p id="answer"></p>
+
     <script src="authentication.js"></script>
 </body>
 </html>

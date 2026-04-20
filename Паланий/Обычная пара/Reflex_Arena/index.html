@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>REFLEX ARENA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <div id="auth-screen" class="screen auth-screen active">
+      <div class="auth-card">
+        <h1 class="game-title">REFLEX ARENA</h1>
+        
+        <div id="auth-form-container">
+          <div class="auth-tabs">
+            <button id="tab-login" class="auth-tab active">Вход</button>
+            <button id="tab-register" class="auth-tab">Регистрация</button>
+          </div>
+          
+          <form id="login-form" class="auth-form active">
+            <div class="input-group">
+              <input type="text" id="login-username" placeholder=" " required>
+              <label for="login-username">НИКНЕЙМ</label>
+              <span class="input-glow"></span>
+            </div>
+            <div class="input-group">
+              <input type="password" id="login-password" placeholder=" " required>
+              <label for="login-password">ПАРОЛЬ</label>
+              <span class="input-glow"></span>
+            </div>
+            <button type="submit" class="btn-primary">ВОЙТИ В СИСТЕМУ</button>
+            <div id="login-error" class="error-message"></div>
+          </form>
+          
+          <!-- Форма регистрации -->
+          <form id="register-form" class="auth-form">
+            <div class="input-group">
+              <input type="text" id="reg-username" placeholder=" " required>
+              <label for="reg-username">НИКНЕЙМ</label>
+              <span class="input-glow"></span>
+            </div>
+            <div class="input-group">
+              <input type="password" id="reg-password" placeholder=" " required>
+              <label for="reg-password">ПАРОЛЬ</label>
+              <span class="input-glow"></span>
+            </div>
+            <div class="input-group">
+              <input type="password" id="reg-confirm" placeholder=" " required>
+              <label for="reg-confirm">ПОДТВЕРДИТЕ</label>
+              <span class="input-glow"></span>
+            </div>
+            <button type="submit" class="btn-primary">СОЗДАТЬ АККАУНТ</button>
+            <div id="register-error" class="error-message"></div>
+          </form>
+        </div>
+        
+        <div class="auth-footer">
+          <span class="neon-text">[ LOCAL STORAGE v1.0 ]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== ГЛАВНОЕ МЕНЮ / ИГРОВОЙ ЭКРАН ==================== -->
+    <div id="main-screen" class="screen main-screen">
+      
+      <!-- Верхняя панель -->
+      <header class="header">
+        <div class="logo">
+          <span class="logo-main">REFLEX</span><span class="logo-sub">ARENA</span>
+        </div>
+        <div class="user-panel">
+          <span id="current-user-display" class="username"></span>
+          <button id="logout-btn" class="btn-logout">ВЫХОД</button>
+        </div>
+      </header>
+      
+      <!-- Основная область: управление + canvas -->
+      <div class="game-dashboard">
+        <!-- Левая панель управления -->
+        <aside class="control-panel">
+          <div class="panel-section">
+            <h3 class="section-title"><span class="bracket">[</span> СЛОЖНОСТЬ <span class="bracket">]</span></h3>
+            <div class="difficulty-selector">
+              <button data-diff="easy" class="diff-btn active">EASY</button>
+              <button data-diff="normal" class="diff-btn">NORMAL</button>
+              <button data-diff="hard" class="diff-btn">HARD</button>
+            </div>
+          </div>
+          
+          <div class="panel-section">
+            <h3 class="section-title"><span class="bracket">[</span> КАРТА <span class="bracket">]</span></h3>
+            <div class="map-selector">
+              <button data-map="standard" class="map-btn active">STANDARD</button>
+              <button data-map="corners" class="map-btn">CORNERS</button>
+              <button data-map="center" class="map-btn">CENTER</button>
+            </div>
+          </div>
+          
+          <div class="panel-section stats-preview">
+            <div class="stat-item">
+              <span class="stat-label">HP</span>
+              <span id="hp-value" class="stat-value">100</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">SCORE</span>
+              <span id="score-value" class="stat-value">0</span>
+            </div>
+          </div>
+          
+          <div class="action-buttons">
+            <button id="start-game-btn" class="btn-primary btn-large">▶ СТАРТ</button>
+            <button id="leaderboard-btn" class="btn-secondary">🏆 ТАБЛИЦА ЛИДЕРОВ</button>
+          </div>
+        </aside>
+        
+        <!-- Игровое поле -->
+        <main class="game-area">
+          <div class="canvas-wrapper">
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+            <div id="game-overlay" class="canvas-overlay">
+              <!-- Здесь могут быть сообщения во время игры -->
+            </div>
+          </div>
+          <div id="game-message" class="game-message"></div>
+        </main>
+      </div>
+    </div>
+
+    <!-- ==================== МОДАЛЬНОЕ ОКНО: РЕЗУЛЬТАТЫ ИГРЫ ==================== -->
+    <div id="result-modal" class="modal">
+      <div class="modal-card">
+        <h2 class="modal-title">/// РЕЗУЛЬТАТЫ МИССИИ ///</h2>
+        <div class="result-stats">
+          <div class="result-row"><span>ОЧКИ:</span> <span id="final-score">0</span></div>
+          <div class="result-row"><span>ТОЧНОСТЬ:</span> <span id="final-accuracy">0%</span></div>
+          <div class="result-row"><span>СРЕДНЯЯ РЕАКЦИЯ:</span> <span id="final-reaction">0 мс</span></div>
+          <div class="result-row"><span>УРОН ПОЛУЧЕН:</span> <span id="final-damage">0</span></div>
+        </div>
+        <div class="modal-actions">
+          <button id="close-result-btn" class="btn-primary">ПРОДОЛЖИТЬ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== МОДАЛЬНОЕ ОКНО: ТАБЛИЦА ЛИДЕРОВ ==================== -->
+    <div id="leaderboard-modal" class="modal">
+      <div class="modal-card modal-wide">
+        <h2 class="modal-title">/// ГЛОБАЛЬНЫЙ РЕЙТИНГ ///</h2>
+        <div class="table-container">
+          <table class="leaderboard-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>ИГРОК</th>
+                <th>ОЧКИ</th>
+                <th>РЕАКЦИЯ (мс)</th>
+                <th>ДАТА</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- Заполняется JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-actions">
+          <button id="close-leaderboard-btn" class="btn-primary">ЗАКРЫТЬ</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <!-- Подключаем скрипты в порядке зависимостей -->
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/leaderboard.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

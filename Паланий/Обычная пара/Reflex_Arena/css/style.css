@@ -1,0 +1,588 @@
+/* ===== RESET & БАЗОВЫЕ НАСТРОЙКИ ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #0a0c0f;
+  --bg-panel: #12161a;
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00aa;
+  --neon-purple: #b000ff;
+  --text-primary: #e0f0ff;
+  --text-dim: #7a8a9a;
+  --danger: #ff3366;
+  --success: #00ff9d;
+  --border-glow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: var(--bg-dark);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: 
+    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.app-container {
+  width: 1200px;
+  max-width: 95vw;
+  margin: 20px auto;
+  position: relative;
+}
+
+/* ===== ЭКРАНЫ (переключение) ===== */
+.screen {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.screen.active {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== АВТОРИЗАЦИЯ ===== */
+.auth-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.auth-card {
+  background: var(--bg-panel);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 20px;
+  padding: 40px;
+  width: 450px;
+  box-shadow: var(--border-glow), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+}
+
+.game-title {
+  font-family: 'Audiowide', cursive;
+  font-size: 42px;
+  text-align: center;
+  color: var(--neon-blue);
+  text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-purple);
+  letter-spacing: 5px;
+  margin-bottom: 5px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  font-size: 14px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
+.auth-tab {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 8px 20px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.auth-tab.active {
+  color: var(--neon-blue);
+  text-shadow: 0 0 8px var(--neon-blue);
+}
+
+.auth-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 15px 15px 10px 15px;
+  background: rgba(10, 20, 30, 0.8);
+  border: 1px solid #2a3a4a;
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+}
+
+.input-group label {
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  color: var(--text-dim);
+  font-size: 14px;
+  letter-spacing: 1px;
+  pointer-events: none;
+  transition: 0.2s ease all;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+  top: -8px;
+  left: 10px;
+  font-size: 11px;
+  background: var(--bg-panel);
+  padding: 0 8px;
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px var(--neon-blue);
+}
+
+.input-group input::placeholder {
+  opacity: 0;
+}
+
+.input-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--neon-blue);
+  transition: width 0.3s;
+}
+
+.input-group input:focus ~ .input-glow {
+  width: 100%;
+}
+
+.btn-primary {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 12px 24px;
+  border-radius: 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+  box-shadow: 0 0 5px var(--neon-blue);
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background: var(--neon-blue);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px var(--neon-blue);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--neon-pink);
+  color: var(--neon-pink);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-secondary:hover {
+  background: var(--neon-pink);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.error-message {
+  color: var(--danger);
+  font-size: 14px;
+  margin-top: 10px;
+  min-height: 20px;
+  text-align: center;
+}
+
+.auth-footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.neon-text {
+  color: var(--text-dim);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+/* ===== ГЛАВНЫЙ ЭКРАН ===== */
+.main-screen {
+  background: rgba(18, 22, 26, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: var(--border-glow);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+.logo {
+  font-family: 'Audiowide', cursive;
+  font-size: 28px;
+}
+
+.logo-main {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.logo-sub {
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px var(--neon-pink);
+}
+
+.user-panel {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.username {
+  color: var(--success);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.btn-logout {
+  background: none;
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-logout:hover {
+  background: var(--danger);
+  color: #000;
+  box-shadow: 0 0 12px var(--danger);
+}
+
+.game-dashboard {
+  display: flex;
+  gap: 20px;
+}
+
+/* Левая панель */
+.control-panel {
+  width: 260px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.panel-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  color: var(--text-dim);
+  font-size: 14px;
+  letter-spacing: 2px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.bracket {
+  color: var(--neon-blue);
+  font-weight: 700;
+}
+
+.difficulty-selector,
+.map-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diff-btn,
+.map-btn {
+  background: transparent;
+  border: 1px solid #2a3a4a;
+  color: var(--text-primary);
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: left;
+  padding-left: 20px;
+  font-weight: 500;
+}
+
+.diff-btn.active,
+.map-btn.active {
+  border-color: var(--neon-blue);
+  color: var(--neon-blue);
+  box-shadow: inset 0 0 8px rgba(0, 243, 255, 0.2), 0 0 10px rgba(0, 243, 255, 0.2);
+  background: rgba(0, 243, 255, 0.05);
+}
+
+.diff-btn:hover,
+.map-btn:hover {
+  border-color: var(--neon-pink);
+  background: rgba(255, 0, 170, 0.05);
+}
+
+.stats-preview {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 15px 0;
+  border: 1px solid #1e2a36;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--success);
+  text-shadow: 0 0 10px var(--success);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.btn-large {
+  padding: 16px;
+  font-size: 20px;
+}
+
+/* Игровая область */
+.game-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.canvas-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 243, 255, 0.3);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: radial-gradient(circle at 50% 50%, #14202b, #0a0f14);
+  cursor: crosshair;
+}
+
+.canvas-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  text-shadow: 0 0 20px black;
+}
+
+.game-message {
+  margin-top: 10px;
+  height: 24px;
+  text-align: center;
+  color: var(--neon-blue);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+/* ===== МОДАЛЬНЫЕ ОКНА ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--neon-blue);
+  border-radius: 30px;
+  padding: 30px;
+  min-width: 400px;
+  box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
+}
+
+.modal-wide {
+  min-width: 600px;
+}
+
+.modal-title {
+  font-family: 'Audiowide', cursive;
+  color: var(--neon-blue);
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px;
+}
+
+.result-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  border-bottom: 1px dashed #2a3a4a;
+  padding-bottom: 8px;
+}
+
+.result-row span:last-child {
+  color: var(--success);
+  font-weight: 700;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.2);
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.leaderboard-table th {
+  background: rgba(0, 243, 255, 0.1);
+  padding: 12px 15px;
+  color: var(--neon-blue);
+  font-weight: 400;
+  letter-spacing: 1px;
+  font-size: 14px;
+  border-bottom: 2px solid var(--neon-blue);
+}
+
+.leaderboard-table td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #1e2a36;
+}
+
+.leaderboard-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .game-dashboard {
+    flex-direction: column;
+  }
+  .control-panel {
+    width: 100%;
+  }
+  .modal-wide {
+    min-width: 90vw;
+  }
+}

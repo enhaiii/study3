@@ -65,10 +65,9 @@
       </div>
     </div>
 
-    <!-- ==================== ГЛАВНОЕ МЕНЮ / ИГРОВОЙ ЭКРАН ==================== -->
+
     <div id="main-screen" class="screen main-screen">
       
-      <!-- Верхняя панель -->
       <header class="header">
         <div class="logo">
           <span class="logo-main">REFLEX</span><span class="logo-sub">ARENA</span>
@@ -79,9 +78,7 @@
         </div>
       </header>
       
-      <!-- Основная область: управление + canvas -->
       <div class="game-dashboard">
-        <!-- Левая панель управления -->
         <aside class="control-panel">
           <div class="panel-section">
             <h3 class="section-title"><span class="bracket">[</span> СЛОЖНОСТЬ <span class="bracket">]</span></h3>
@@ -117,13 +114,11 @@
             <button id="leaderboard-btn" class="btn-secondary">🏆 ТАБЛИЦА ЛИДЕРОВ</button>
           </div>
         </aside>
-        
-        <!-- Игровое поле -->
+
         <main class="game-area">
           <div class="canvas-wrapper">
             <canvas id="game-canvas" width="800" height="600"></canvas>
             <div id="game-overlay" class="canvas-overlay">
-              <!-- Здесь могут быть сообщения во время игры -->
             </div>
           </div>
           <div id="game-message" class="game-message"></div>
@@ -131,26 +126,24 @@
       </div>
     </div>
 
-    <!-- ==================== МОДАЛЬНОЕ ОКНО: РЕЗУЛЬТАТЫ ИГРЫ ==================== -->
     <div id="result-modal" class="modal">
       <div class="modal-card">
-        <h2 class="modal-title">/// РЕЗУЛЬТАТЫ МИССИИ ///</h2>
+        <h2 class="modal-title">РЕЗУЛЬТАТЫ МИССИИ</h2>
         <div class="result-stats">
-          <div class="result-row"><span>ОЧКИ:</span> <span id="final-score">0</span></div>
-          <div class="result-row"><span>ТОЧНОСТЬ:</span> <span id="final-accuracy">0%</span></div>
-          <div class="result-row"><span>СРЕДНЯЯ РЕАКЦИЯ:</span> <span id="final-reaction">0 мс</span></div>
-          <div class="result-row"><span>УРОН ПОЛУЧЕН:</span> <span id="final-damage">0</span></div>
+          <div class="result-row"><span>Очки:</span> <span id="final-score">0</span></div>
+          <div class="result-row"><span>Точность:</span> <span id="final-accuracy">0%</span></div>
+          <div class="result-row"><span>Средняя реакция:</span> <span id="final-reaction">0 мс</span></div>
+          <div class="result-row"><span>Урон получен:</span> <span id="final-damage">0</span></div>
         </div>
         <div class="modal-actions">
-          <button id="close-result-btn" class="btn-primary">ПРОДОЛЖИТЬ</button>
+          <button id="close-result-btn" class="btn-primary">Продолжить</button>
         </div>
       </div>
     </div>
 
-    <!-- ==================== МОДАЛЬНОЕ ОКНО: ТАБЛИЦА ЛИДЕРОВ ==================== -->
     <div id="leaderboard-modal" class="modal">
       <div class="modal-card modal-wide">
-        <h2 class="modal-title">/// ГЛОБАЛЬНЫЙ РЕЙТИНГ ///</h2>
+        <h2 class="modal-title">ГЛОБАЛЬНЫЙ РЕЙТИНГ</h2>
         <div class="table-container">
           <table class="leaderboard-table">
             <thead>
@@ -163,7 +156,6 @@
               </tr>
             </thead>
             <tbody id="leaderboard-body">
-              <!-- Заполняется JS -->
             </tbody>
           </table>
         </div>

@@ -1,4 +1,3 @@
-/* ===== RESET & БАЗОВЫЕ НАСТРОЙКИ ===== */
 * {
   margin: 0;
   padding: 0;
@@ -39,7 +38,6 @@ body {
   position: relative;
 }
 
-/* ===== ЭКРАНЫ (переключение) ===== */
 .screen {
   display: none;
   opacity: 0;
@@ -51,7 +49,6 @@ body {
   opacity: 1;
 }
 
-/* ===== АВТОРИЗАЦИЯ ===== */
 .auth-screen {
   display: flex;
   align-items: center;
@@ -259,7 +256,6 @@ body {
   letter-spacing: 2px;
 }
 
-/* ===== ГЛАВНЫЙ ЭКРАН ===== */
 .main-screen {
   background: rgba(18, 22, 26, 0.7);
   backdrop-filter: blur(8px);
@@ -428,7 +424,6 @@ body {
   font-size: 20px;
 }
 
-/* Игровая область */
 .game-area {
   flex: 1;
   display: flex;
@@ -475,7 +470,6 @@ body {
   letter-spacing: 2px;
 }
 
-/* ===== МОДАЛЬНЫЕ ОКНА ===== */
 .modal {
   display: none;
   position: fixed;
@@ -574,7 +568,6 @@ body {
   justify-content: center;
 }
 
-/* Адаптивность */
 @media (max-width: 900px) {
   .game-dashboard {
     flex-direction: column;
